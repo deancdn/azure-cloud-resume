@@ -214,10 +214,10 @@
               throw new Error(`HTTP error! Status: ${response.status}`);
             }
             const data = await response.json();
-            const visitorCount = data.count;
+            const VisitorCount = data.count;
     
             // Update the HTML element with the visitor count
-            document.getElementById("visitor-count").textContent = visitorCount;
+            document.getElementById("visitor-count").textContent = VisitorCount;
           } catch (error) {
             console.error("Error fetching visitor count:", error);
           }

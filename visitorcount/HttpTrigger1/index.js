@@ -10,12 +10,12 @@ const container = client.database(databaseId).container(containerId);
 
 module.exports = async function (context, req) {
   try {
-    const { resource: document } = await container.item("visitorCount").read();
+    const { resource: document } = await container.item("VisitorCount").read();
     const currentCount = document.count || 0;
 
     // Increment the visitor count
     document.count = currentCount + 1;
-    await container.item("visitorCount").replace(document);
+    await container.item("VisitorCount").replace(document);
 
     context.res = {
       status: 200,
