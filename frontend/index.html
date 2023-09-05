@@ -199,38 +199,40 @@
 
    <!-- Java Script
    ================================================== -->
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
    <script src="js/jquery.flexslider.js"></script>
    <script src="js/waypoints.js"></script>
    <script src="js/jquery.fittext.js"></script>
    <script src="js/magnific-popup.js"></script>
    <script src="js/init.js"></script>
    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Function to fetch visitor count from your Azure Function
-        async function fetchVisitorCount() {
-          try {
-            const response = await fetch("https://visitor-count-cloud-resume.azurewebsites.net/api/incrementVisitorCount"); // Replace with your Azure Function URL
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            const data = await response.json();
-            const VisitorCount = data.count;
-    
-            // Update the HTML element with the visitor count
-            document.getElementById("visitor-count").textContent = VisitorCount;
-          } catch (error) {
-            console.error("Error fetching visitor count:", error);
-          }
-        }
-    
-        // Call the fetchVisitorCount function when the page loads
-        fetchVisitorCount();
-      });
-    </script>
-    
-    
-    
+    document.addEventListener("DOMContentLoaded", function () {
+    // Function to fetch visitor count from your Azure Function
+    async function fetchVisitorCount() {
+      try {
+        const response = await fetch("https://visitor-count-cloud-resume.azurewebsites.net/api/incrementVisitorCount", {
+          method: "GET",
+          credentials: "include", // Include cookies and credentials in the request
+        });
 
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        const VisitorCount = data.count;
+
+        // Update the HTML element with the visitor count
+        document.getElementById("visitor-count").textContent = VisitorCount;
+      } catch (error) {
+        console.error("Error fetching visitor count:", error);
+      }
+    }
+
+    // Call the fetchVisitorCount function when the page loads
+    fetchVisitorCount();
+  });
+  </script>
 
 </body>
 
