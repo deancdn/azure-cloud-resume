@@ -6,7 +6,7 @@
       "direction": "in",
       "name": "req",
       "methods": ["get"],
-      "route": "incrementVisitorCount" // Customize the route as needed
+      "route": "api/incrementVisitorCount" // Customize the route as needed
     },
     {
       "type": "http",

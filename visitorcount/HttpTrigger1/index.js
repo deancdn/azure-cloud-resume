@@ -10,6 +10,8 @@ const container = client.database(databaseId).container(containerId);
 
 module.exports = async function (context, req) {
   try {
+    context.log("Function is running...");
+
     const { resource: document } = await container.item("VisitorCount").read();
     const currentCount = document.count || 0;
 
@@ -17,14 +19,17 @@ module.exports = async function (context, req) {
     document.count = currentCount + 1;
     await container.item("VisitorCount").replace(document);
 
+    context.log("Visitor count updated:", document.count);
+
     context.res = {
       status: 200,
       body: { count: document.count },
     };
   } catch (error) {
+    context.log.error("Error:", error);
     context.res = {
       status: 500,
-      body: error.message,
+      body: "Internal server error",
     };
   }
 };
