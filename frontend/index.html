@@ -209,7 +209,7 @@
         // Function to fetch visitor count from your Azure Function
         async function fetchVisitorCount() {
           try {
-            const response = await fetch("https://visitor-count-cloud-resume.azurewebsites.net"); // Replace with your Azure Function URL
+            const response = await fetch("https://visitor-count-azure-resume.documents.azure.com:443/"); // Replace with your Azure Function URL
             if (!response.ok) {
               throw new Error(`HTTP error! Status: ${response.status}`);
             }
